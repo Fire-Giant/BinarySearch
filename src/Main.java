@@ -14,6 +14,10 @@ public class Main {
         Collections.sort(numList);
         System.out.println(numList);
         System.out.println(binarySearch(numList, 25));
+        int[] listToSort = {7,8,5,4,9,2};
+        int[] listToSort2 ={8,6,5,12,34,4,3,2,2};
+        insertionSort(listToSort2);
+        selectionSort(listToSort);
     } 
         public static int binarySearch(ArrayList < Integer > numList,int target){
             int tempMedianIndex;
@@ -34,6 +38,44 @@ public class Main {
 
           return -1;
         }
+
+        public static void selectionSort(int[] arr){
+
+            for(int i = 0; i < arr.length-1; i++){
+                int minIndex = i;
+                for(int j = i+1; j < arr.length;j++){
+                    if(arr[j] < arr[minIndex]){
+                        minIndex = j;
+                    }
+                }
+                int temp = arr[minIndex];
+                arr[minIndex] = arr[i];
+                arr[i] = temp;
+            }
+            for(int k : arr){
+                System.out.print(k+" ");
+            }
+
+        }
+        private static void insertionSort(int[] arr){
+        int len = arr.length;
+        for(int i = 1; i < len; i++){
+            int key = arr[i];
+            int j = i-1;
+            while(j>=0 && arr[j] >key){
+                arr[j+1] =arr[j];
+                j--;
+            }
+            arr[j+1] = key;
+
+        }
+            for(int k : arr){
+                System.out.print(k+" ");
+            }
+            System.out.println();
+        }
+
+
 
 
 }
