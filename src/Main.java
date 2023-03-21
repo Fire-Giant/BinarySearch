@@ -7,47 +7,31 @@ public class Main {
         numList.add(4);
         numList.add(25);
         numList.add(2);
-        numList.add(14);
         numList.add(87);
-        numList.add(56);
+        numList.add(22);
+        numList.add(15);
         System.out.println(numList);
         Collections.sort(numList);
         System.out.println(numList);
-        binarySearch(numList, 2);
+        System.out.println(binarySearch(numList, 25));
     } 
         public static int binarySearch(ArrayList < Integer > numList,int target){
-            double tempMedian = 0;
-          int tempMedianIndex;
+            int tempMedianIndex;
             int startIndex = 0;
             int endIndex = numList.size() -1;
-            for (int length = numList.size(); length > 0;) {
-                if ((length - tempMedian) % 2 == 0) {
-                    tempMedian = (numList.get(endIndex/2+startIndex/2) + numList.get(endIndex/2+startIndex/2-1) / 2);
-                    tempMedianIndex = (endIndex+startIndex)/2;
-                } else {
-                    tempMedian = numList.get((endIndex+startIndex) / 2);
-                  tempMedianIndex = (endIndex+startIndex) / 2;
-                }
-                if(target == tempMedian){
-                  System.out.println(tempMedianIndex);
+            while (endIndex-startIndex >=0) {
+                tempMedianIndex = (startIndex+endIndex)/2;
+                if(target == numList.get(tempMedianIndex)){
                     return tempMedianIndex;
                 }
-                if (target >= tempMedian) {
-                    startIndex = tempMedianIndex + 1;
-                    length = endIndex-startIndex+1;
+                if (target >= numList.get(tempMedianIndex)) {
+                    startIndex = tempMedianIndex++;
                 } else {
-                    endIndex = tempMedianIndex;
-                  length = endIndex-startIndex+1;
+                    endIndex = tempMedianIndex--;
+                }
 
-                }
-                if (startIndex == endIndex && numList.get(startIndex) == target) {
-                  System.out.println(startIndex);  
-                  return startIndex;
-                } else if (startIndex == endIndex) {
-                    System.out.println(-1);
-                  return -1;
-                }
             }
+
           return -1;
         }
 
