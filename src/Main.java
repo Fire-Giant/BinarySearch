@@ -13,35 +13,43 @@ public class Main {
         System.out.println(numList);
         Collections.sort(numList);
         System.out.println(numList);
-
-
-        public static int binarySearch (ArrayList < Integer > numList,int target){
-            int tempMedian = 0;
-            int adder = 0;
+        binarySearch(numList, 2);
+    } 
+        public static int binarySearch(ArrayList < Integer > numList,int target){
+            double tempMedian = 0;
+          int tempMedianIndex;
             int startIndex = 0;
             int endIndex = numList.size() -1;
             for (int length = numList.size(); length > 0;) {
                 if ((length - tempMedian) % 2 == 0) {
-                    tempMedian = (numList.get(numList.size() / 2) + numList.get(numList.size()) / 2 - 1) / 2;
+                    tempMedian = (numList.get(endIndex/2+startIndex/2) + numList.get(endIndex/2+startIndex/2-1) / 2);
+                    tempMedianIndex = (endIndex+startIndex)/2;
                 } else {
-                    tempMedian = numList.get(numList.size() / 2);
+                    tempMedian = numList.get((endIndex+startIndex) / 2);
+                  tempMedianIndex = (endIndex+startIndex) / 2;
                 }
                 if(target == tempMedian){
-                    return tempMedian;
+                  System.out.println(tempMedianIndex);
+                    return tempMedianIndex;
                 }
                 if (target >= tempMedian) {
-                    startIndex = tempMedian;
+                    startIndex = tempMedianIndex + 1;
+                    length = endIndex-startIndex+1;
                 } else {
-                    numList.removeRange(tempMedian, numList.size());
+                    endIndex = tempMedianIndex;
+                  length = endIndex-startIndex+1;
+
                 }
-                if (length == 1 && numList.get(target) == target) {
-                    System.out.println(target);
-                } else if (length == 1) {
-                    System.out.println(target);
+                if (startIndex == endIndex && numList.get(startIndex) == target) {
+                  System.out.println(startIndex);  
+                  return startIndex;
+                } else if (startIndex == endIndex) {
+                    System.out.println(-1);
+                  return -1;
                 }
             }
+          return -1;
         }
 
 
-    }
 }
